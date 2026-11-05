@@ -5,10 +5,12 @@ ErrorDocument 404 /404.html
 AddDefaultCharset UTF-8
 AddType application/pdf .pdf
 AddType font/woff2 .woff2
+AddType image/webp .webp
 
 RewriteEngine On
 
-# Anciennes adresses WordPress
+# Anciennes adresses WordPress (dont les plans de site Yoast)
+RewriteRule ^(sitemap_index|page-sitemap|post-sitemap)\.xml$ /sitemap.xml [R=301,L]
 RewriteRule ^(feed|comments/feed|page-d-exemple)/?$ / [R=301,L]
 RewriteRule ^(wp-admin|wp-login\.php|xmlrpc\.php|wp-json)(/.*)?$ - [R=404,L]
 
@@ -22,13 +24,17 @@ RewriteRule ^(wp-admin|wp-login\.php|xmlrpc\.php|wp-json)(/.*)?$ - [R=404,L]
 RedirectMatch 404 ^/(_demandes|_ancien-wordpress[^/]*)(/|$)
 
 <IfModule mod_headers.c>
+  # Jugement : consultable et partageable, mais pas indexé (personnes physiques nommées)
+  <FilesMatch "^jugement-.*\.pdf$">
+    Header set X-Robots-Tag "noindex"
+  </FilesMatch>
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
   <FilesMatch "\.html$">
     Header set Cache-Control "no-cache"
   </FilesMatch>
-  <FilesMatch "\.(css|js|woff2|svg|png|jpg|pdf)$">
+  <FilesMatch "\.(css|js|woff2|svg|png|jpg|webp|pdf)$">
     Header set Cache-Control "public, max-age=2592000"
   </FilesMatch>
 </IfModule>

@@ -7,14 +7,20 @@
   var burger = header && header.querySelector('.hy-burger');
   if (burger) {
     var label = burger.querySelector('.hy-burger__label');
+    var nav = header.querySelector('.hy-nav');
+    var autour = document.querySelectorAll('.hy-annonce, main, footer');
     var setMenu = function (open) {
       header.classList.toggle('open', open);
       document.body.classList.toggle('menu-open', open);
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
       if (label) label.textContent = open ? 'Fermer' : 'Menu';
+      // Le menu commence sous le bouton (le bandeau de publication peut le décaler) ; le reste de la page devient inerte
+      if (open) nav.style.paddingTop = Math.round(burger.getBoundingClientRect().bottom + 32) + 'px';
+      autour.forEach(function (el) { if (open) el.setAttribute('inert', ''); else el.removeAttribute('inert'); });
+      if (open) { var premier = nav.querySelector('a'); if (premier) premier.focus(); } else if (header.contains(document.activeElement) || !document.activeElement || document.activeElement === document.body) burger.focus();
     };
     burger.addEventListener('click', function () { setMenu(!header.classList.contains('open')); });
-    window.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+    window.addEventListener('keydown', function (e) { if (e.key === 'Escape' && header.classList.contains('open')) setMenu(false); });
     window.matchMedia('(min-width: 992px)').addEventListener('change', function (m) { if (m.matches) setMenu(false); });
   }
 
@@ -56,6 +62,21 @@
     window.addEventListener('resize', demander);
     maj();
   }
+
+  // Vidéos YouTube : l'iframe (youtube-nocookie) n'est chargée qu'au clic
+  document.querySelectorAll('[data-youtube]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + b.getAttribute('data-youtube') + '?autoplay=1&rel=0';
+      f.title = b.getAttribute('data-titre') || 'Vidéo';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      var cadre = document.createElement('div');
+      cadre.className = 'hy-video';
+      cadre.appendChild(f);
+      b.replaceWith(cadre);
+    });
+  });
 
   // Formulaire de contact : retour de l'envoi (?envoi=ok|erreur)
   var statut = document.querySelector('[data-form-status]');

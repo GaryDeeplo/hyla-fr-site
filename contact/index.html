@@ -85,24 +85,27 @@
       <fieldset class="hy-field">
         <legend>Centre d’intérêt <span class="hy-req">*</span></legend>
         <div class="hy-radios">
-          <label><input type="radio" name="interet" value="produit" required checked> Produit</label>
+          <label><input type="radio" name="interet" value="produit" required> Produit</label>
           <label><input type="radio" name="interet" value="carriere" id="f-carriere"> Carrière</label>
         </div>
       </fieldset>
       <div class="hy-field"><label for="f-msg">Votre message <span class="hy-req">*</span></label><textarea id="f-msg" name="message" required maxlength="4000"></textarea></div>
       <div class="hy-hp" aria-hidden="true"><label for="f-site">Site web</label><input id="f-site" name="site_web" tabindex="-1" autocomplete="off"></div>
-      <input type="hidden" name="t" value="">
+      <input type="hidden" name="duree" value="">
       <label class="hy-consent"><input type="checkbox" name="consentement" value="oui" required> <span>J’accepte la <a href="../politique-de-confidentialite/">politique de confidentialité</a> de ce site. <span class="hy-req">*</span></span></label>
-      <div><button class="hy-btn hy-btn--filled" type="submit"><span class="hy-btn__wrapper"><span class="hy-btn__default">Envoyer</span><span class="hy-btn__hover" aria-hidden="true">Envoyer</span></span></button></div>
+      <div><button class="hy-btn hy-btn--filled" type="submit"><span class="hy-btn__wrapper"><span class="hy-btn__default">Envoyer le message</span><span class="hy-btn__hover" aria-hidden="true">Envoyer le message</span></span></button></div>
     </form>
   </div>
 </section>
 <script>
   (function () {
     var f = document.getElementById('formulaire');
-    f.elements.t.value = String(Date.now());
+    var debut = Date.now();
     if (new URLSearchParams(location.search).get('sujet') === 'carriere') document.getElementById('f-carriere').checked = true;
-    f.addEventListener('submit', function (e) { if (!f.checkValidity()) { e.preventDefault(); f.reportValidity(); } });
+    f.addEventListener('submit', function (e) {
+      if (!f.checkValidity()) { e.preventDefault(); f.reportValidity(); return; }
+      f.elements.duree.value = String(Date.now() - debut); // temps passé sur le formulaire (anti-robots)
+    });
   })();
 </script>
 
@@ -117,11 +120,13 @@
       <div>
         <p class="hf-titre">Le site</p>
         <ul class="hf-liens">
+          <li><a href="../"><span class="hf-u">Accueil</span></a></li>
           <li><a href="../produit/"><span class="hf-u">Produit</span></a></li>
           <li><a href="../a-propos-de-nous/"><span class="hf-u">À propos de nous</span></a></li>
           <li><a href="../recrutement/"><span class="hf-u">Recrutement</span></a></li>
           <li><a href="../references/"><span class="hf-u">Références</span></a></li>
           <li><a href="../actualites/"><span class="hf-u">Actualités</span></a></li>
+          <li><a href="../contact/"><span class="hf-u">Contact</span></a></li>
         </ul>
       </div>
       <div>
@@ -129,8 +134,8 @@
         <ul class="hf-liens">
           <li>HYLA Evolution SAS</li>
           <li>12, rue Thomas Edison<br>77100 Meaux</li>
-          <li><a href="tel:+33185764826"><span class="hf-u">Tél. : +33 1 85 76 48 26</span></a></li>
-          <li><a href="mailto:info@hyla-est.fr"><span class="hf-u">info@hyla-est.fr</span></a></li>
+          <li><a href="tel:+33185764826"><span class="hf-u">Tél.&nbsp;: +33&nbsp;1&nbsp;85&nbsp;76&nbsp;48&nbsp;26</span></a></li>
+          <li><a href="mailto:info@hyla-est.fr"><span class="hf-u">E-mail&nbsp;: info@hyla-est.fr</span></a></li>
         </ul>
       </div>
       <div>

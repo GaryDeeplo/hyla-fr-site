@@ -41,12 +41,13 @@ $champ = function ($nom, $max) {
 };
 $ligne = function ($v) { return trim(preg_replace('/[\r\n\t]+/', ' ', $v)); };
 
-// Robots : champ piège rempli, ou formulaire envoyé en moins de 3 s / ouvert depuis plus d'un jour.
-$t = (int) ($_POST['t'] ?? 0);
-$age = (int) round(microtime(true) * 1000) - $t;
-if ($champ('site_web', 200) !== '' || $t <= 0 || $age < 3000 || $age > 86400000) {
-    $retour('ok'); // réponse neutre pour ne pas renseigner les robots
+// Robots : seul le champ piège rempli rejette la demande (réponse neutre). Un envoi trop rapide ou sans
+// JavaScript (durée absente) est gardé mais marqué « à vérifier » : aucune vraie demande n'est perdue.
+if ($champ('site_web', 200) !== '') {
+    $retour('ok');
 }
+$duree = (int) ($_POST['duree'] ?? 0);
+$suspect = $duree < 3000;
 
 $d = [
     'nom' => $ligne($champ('nom', 80)),
@@ -73,10 +74,10 @@ if (!is_dir($dossier)) {
 if (!is_file($dossier . '/.htaccess')) {
     @file_put_contents($dossier . '/.htaccess', "Require all denied\n");
 }
-$entree = $d + ['date' => date('c'), 'ip' => $_SERVER['REMOTE_ADDR'] ?? '', 'envoi' => ''];
+$entree = $d + ['date' => date('c'), 'ip' => $_SERVER['REMOTE_ADDR'] ?? '', 'a_verifier' => $suspect, 'envoi' => ''];
 
 // 2. E-mail
-$sujet = '[hyla.fr] Demande ' . ($d['interet'] === 'Carrière' ? 'carrière' : 'produit / démonstration') . ' — ' . $d['prenom'] . ' ' . $d['nom'];
+$sujet = '[hyla.fr]' . ($suspect ? ' [à vérifier]' : '') . ' Demande ' . ($d['interet'] === 'Carrière' ? 'carrière' : 'produit / démonstration') . ' — ' . $d['prenom'] . ' ' . $d['nom'];
 $corps = "Nouvelle demande depuis le formulaire de contact de hyla.fr\n\n"
     . "Nom : {$d['nom']}\nPrénom : {$d['prenom']}\nVille : {$d['ville']}\nDépartement : {$d['departement']}\n"
     . "Téléphone : {$d['telephone']}\nE-mail : {$d['email']}\nCentre d'intérêt : {$d['interet']}\n\n"
