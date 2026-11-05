@@ -75,8 +75,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .hy-annonce .hy-wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 12px;min-height:40px;padding-top:8px;padding-bottom:8px;text-align:center}
 .hy-annonce strong{font-weight:400}
 .hy-annonce strong::before{content:"";display:inline-block;width:8px;height:8px;margin-right:8px;border-radius:50%;background:var(--hy-coral);vertical-align:1px}
-.hy-annonce a{color:var(--hy-white);text-underline-offset:3px}
-.hy-annonce a:hover{color:var(--hy-coral)}
+.hy-annonce a{color:var(--hy-white);text-decoration:none}
+.hy-annonce__lire{text-decoration:underline;text-underline-offset:3px}
+.hy-annonce a:hover .hy-annonce__lire{text-decoration-color:var(--hy-coral)}
 @media (min-width:992px){.hy-annonce{font-size:14px}}
 
 /* ===== En-tête (façon hylashop) ===== */
@@ -155,11 +156,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .hy-publi__title{font-size:36px;line-height:1}
 .hy-publi__ref{color:var(--hy-muted);font-size:15px}
 .hy-publi__card{background:var(--hy-white);border-radius:12px;padding:24px}
+.hy-publi__resume{display:grid;gap:16px;font-size:18px;line-height:1.55}
+.hy-publi__resume p{margin:0;max-width:62ch}
+.hy-publi__resume strong{font-weight:400;text-decoration:underline;text-decoration-color:var(--hy-coral);text-underline-offset:4px}
+.hy-publi__resume .hy-btns{margin-top:8px}
+@media (min-width:992px){.hy-publi__resume{font-size:20px}}
 .hy-publi__card h3{font-family:var(--hy-sans);font-size:15px;line-height:1.4;color:var(--hy-muted);margin:0 0 16px;letter-spacing:.02em}
 @media (min-width:768px){.hy-publi__card{padding:40px}}
 @media (min-width:992px){
   .hy-publi__grid{grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:64px;align-items:start}
-  .hy-publi__head{position:sticky;top:calc(var(--hy-header-h) + 32px)}
   .hy-publi__title{font-size:48px}
 }
 
@@ -350,6 +355,9 @@ fieldset.hy-field{border:0;margin:0;padding:0;min-width:0}
 /* ===== Pied de page (façon hyla.com / hylashop) ===== */
 .hf{background:var(--hy-ink);color:var(--hy-white)}
 .hf-fond{position:relative;overflow:hidden;padding:40px 0}
+/* Dégradé du haut (hyla.com) : ce qui descend sort de l'anthracite au lieu d'apparaître net */
+.hf-fond::before{content:"";position:absolute;top:0;left:0;right:0;z-index:1;height:60px;background:linear-gradient(180deg,var(--hy-ink) 0,rgba(52,52,52,0) 100%);pointer-events:none}
+.hf-ani-1,.hf-ani-2,.hf-ani-3{transform-origin:50% 50%}
 .hf-haut{display:grid;grid-template-columns:1fr 1fr;gap:40px 20px;margin-top:24px}
 .hf-marque{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .hf-marque img{display:block;width:auto;height:30px}
@@ -372,7 +380,8 @@ fieldset.hy-field{border:0;margin:0;padding:0;min-width:0}
 .hf-bas a{color:inherit;text-underline-offset:3px}
 @media (min-width:768px){.hf-haut{grid-template-columns:repeat(4,minmax(0,auto));justify-content:space-between;column-gap:32px}}
 @media (min-width:992px){
-  .hf-fond{padding:80px 0}
+  /* Plein écran comme hyla.com : le haut du pied atteint le haut de l'écran, l'animation va au bout */
+  .hf-fond{display:flex;flex-direction:column;justify-content:space-between;min-height:100vh;min-height:100svh;padding:80px 0}
   .hf-haut{row-gap:48px;margin-top:40px}
   .hf-marque img{height:38px}
   .hf-titre{font-size:18px}
@@ -386,14 +395,48 @@ fieldset.hy-field{border:0;margin:0;padding:0;min-width:0}
   .hf-grenouille{width:56px;height:56px}
 }
 
-/* ===== Apparition au défilement ===== */
+/* ===== Mouvement : apparitions (repères hyla.com : longues décélérations, rien qui rebondit) =====
+   Contenu visible par défaut : seuls les éléments marqués par site.js (data-anim) sont masqués, et seulement
+   quand JavaScript tourne (.js). Trois matières : la photo s'ouvre (clip-path + léger zoom arrière), le titre
+   sort du flou en montant, les listes arrivent en cascade. */
+:root{--hy-out:cubic-bezier(.16,1,.3,1)}
+@keyframes hy-rideau{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes hy-zoom{from{transform:scale(1.14)}to{transform:none}}
+@keyframes hy-monte{from{opacity:0;transform:translate3d(0,36px,0);filter:blur(10px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes hy-fondu{from{opacity:0}to{opacity:1}}
 @media (prefers-reduced-motion:no-preference){
-  .js .hy-reveal{opacity:0;transform:translateY(24px);transition:opacity .65s var(--hy-ease),transform .65s var(--hy-ease)}
-  .js .hy-reveal.is-in{opacity:1;transform:none}
+  /* Entrée de page : rideau sur la photo du hero, puis titre ligne par ligne, texte, bouton */
+  .js .hy-hero__media{animation:hy-rideau 1.3s var(--hy-out) both}
+  .js .hy-hero__media img{animation:hy-zoom 2s var(--hy-out) both}
+  .js .hy-hero__title > span,.js .hy-hero__text,.js .hy-hero .hy-btn,
+  .js .hy-pagehead .hy-crumb,.js .hy-pagehead h1,.js .hy-pagehead p{animation:hy-monte 1.1s var(--hy-out) both}
+  .js .hy-hero__title > span:first-child,.js .hy-pagehead .hy-crumb{animation-delay:.35s}
+  .js .hy-hero__title > span + span,.js .hy-pagehead h1{animation-delay:.5s}
+  .js .hy-hero__text,.js .hy-pagehead p{animation-delay:.68s}
+  .js .hy-hero .hy-btn{animation-delay:.82s}
+  /* Au défilement */
+  .js [data-anim]{transition:opacity .9s var(--hy-out),transform 1.1s var(--hy-out),filter .9s var(--hy-out),clip-path 1.3s var(--hy-out);transition-delay:calc(var(--i,0) * 90ms)}
+  .js [data-anim="titre"]:not(.is-in){opacity:0;transform:translate3d(0,32px,0);filter:blur(8px)}
+  .js [data-anim="texte"]:not(.is-in){opacity:0;transform:translate3d(0,24px,0)}
+  .js [data-anim="item"]:not(.is-in){opacity:0;transform:translate3d(0,40px,0)}
+  .js [data-anim="fondu"]:not(.is-in){opacity:0;filter:blur(12px)}
+  .js [data-anim="media"]{clip-path:inset(0 0 0 0 round var(--anim-r,0px))}
+  .js [data-anim="media"]:not(.is-in){clip-path:inset(9% 7% 9% 7% round var(--anim-r,0px))}
+  .js [data-anim="media"] img{transition:transform 1.6s var(--hy-out)}
+  .js [data-anim="media"]:not(.is-in) img{transform:scale(1.14)}
+  .js .hy-edito--simple .hy-edito__media[data-anim],.js .hy-tile__media[data-anim],.js .hy-video[data-anim],.js .hy-feature[data-anim]{--anim-r:12px}
+  /* Une fois arrivé, plus de filtre ni de découpe actifs (rendu net, survols intacts) */
+  .js [data-anim].is-fini{filter:none;clip-path:none;transition-delay:0s}
+}
+@media (prefers-reduced-motion:reduce){
+  .js [data-anim]:not(.is-in){opacity:0}
+  .js [data-anim]{transition:opacity .5s linear}
+  .js .hy-hero__title > span,.js .hy-hero__text,.js .hy-pagehead h1{animation:hy-fondu .6s linear both}
 }
 @media (prefers-reduced-motion:reduce){
   .hy-btn,.hy-btn__default,.hy-btn__hover,.hy-nav,.hy-burger i::before,.hy-burger i::after{transition:none}
   .hy-edito__accroche{transform:none!important}
+  .hf-ani-1,.hf-ani-2,.hf-ani-3{transform:none!important}
 }
 @media print{
   .hy-header,.hy-annonce,.hf,.hy-btn{display:none!important}
@@ -410,9 +453,10 @@ fieldset.hy-field{border:0;margin:0;padding:0;min-width:0}
 @media (min-width:992px){.hy-certs img{height:96px}}
 
 /* Valeurs (À propos) */
-.hy-value{display:flex;align-items:flex-end;min-height:160px;padding:24px;border-radius:12px;background:var(--hy-white)}
+.hy-value{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:24px;min-height:200px;padding:24px;border-radius:12px;background:var(--hy-white)}
+.hy-value img{width:72px;height:72px}
 .hy-value h3{font-size:28px;line-height:1.05}
-@media (min-width:992px){.hy-value{min-height:220px;padding:32px}.hy-value h3{font-size:36px}}
+@media (min-width:992px){.hy-value{min-height:260px;padding:32px}.hy-value img{width:88px;height:88px}.hy-value h3{font-size:36px}}
 
 /* Vidéo YouTube : chargée seulement au clic (aucun cookie tiers avant) */
 .hy-video{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;font:inherit;border-radius:12px;overflow:hidden;background:var(--hy-ink);color:var(--hy-white);cursor:pointer;text-align:left}
@@ -423,5 +467,65 @@ fieldset.hy-field{border:0;margin:0;padding:0;min-width:0}
 .hy-video__play svg{width:24px;height:24px;margin-left:3px}
 .hy-video__titre{position:absolute;left:20px;right:20px;bottom:16px;font-size:15px;line-height:1.4;text-shadow:0 1px 8px rgba(52,52,52,.6)}
 .hy-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.hy-video--sombre{background:var(--hy-ink)}
+.hy-video__marque{position:absolute;left:20px;top:20px;width:56px;height:56px;border-radius:4px;overflow:hidden}
+.hy-video__marque img{position:static;width:100%;height:100%;object-fit:cover;opacity:1;filter:grayscale(1)}
 .hy-video-note{margin-top:8px;font-size:13px;color:var(--hy-muted)}
 .hy-avis-note{font-size:13px;color:var(--hy-muted);max-width:78ch}
+
+/* ===== Téléphone (< 768 px) : disposition repensée pour le pouce et l'écran étroit ===== */
+@media (max-width:767px){
+  /* Bandeau de publication : une ligne courte, toute la barre est cliquable (44 px mini) */
+  .hy-annonce .hy-wrap{min-height:44px;padding-top:10px;padding-bottom:10px;gap:2px 10px}
+  .hy-annonce__long{display:none}
+  .hy-burger{min-height:44px}
+  .hy-logo{padding:8px 0}
+  /* Hero : titre au plus près de la photo, CTA pleine largeur à portée de pouce */
+  .hy-hero__panel{gap:20px;padding:32px 20px 40px}
+  .hy-hero .hy-btn,.hy-publi .hy-btn,.hy-cta .hy-btn,.hy-edito .hy-btn{width:100%}
+  .hy-publi__resume .hy-btns{width:100%;flex-direction:column}
+  /* Dispositif : carte moins encadrée pour garder une colonne de lecture large */
+  .hy-publi__card{padding:20px 16px;margin:0 -8px}
+  .hy-publi__title{font-size:32px}
+  /* Tuiles : moins hautes ; les produits passent sur deux colonnes */
+  .hy-tile__media{aspect-ratio:4/3}
+  .hy-tiles--4{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+  .hy-tiles--4 .hy-tile__media{aspect-ratio:1/1}
+  .hy-tiles--4 .hy-tile__title{font-size:20px}
+  .hy-tiles--4 .hy-link{display:block;min-height:0;font-size:14px}
+  .hy-tiles--4 .hy-link svg{display:inline-block;margin-left:4px;vertical-align:-3px}
+  .hy-tile .hy-link{min-height:0}
+  .hy-btn{padding-left:16px;padding-right:16px}
+  .hy-split{gap:32px}
+  .hy-tile__media--logos{padding:8%}
+  /* Logos presse et certifications : une rangée nette au lieu d'un retour à la ligne orphelin */
+  .hy-press{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;width:100%}
+  .hy-press img{height:auto;width:100%;max-height:64px;object-fit:contain}
+  .hy-certs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;width:100%}
+  .hy-certs img{height:auto;width:100%;max-height:72px;object-fit:contain}
+  /* Liens texte et coordonnées : zone tactile de 44 px */
+  .hy-link{min-height:44px}
+  .hy-info a{display:inline-block;padding:10px 0;margin:-10px 0}
+  /* Formulaire : carte allégée, plus de largeur pour les champs */
+  .hy-form{padding:20px 16px;margin:0 -8px}
+  .hy-radios label{min-height:44px}
+  .hy-consent{padding:4px 0}
+  /* Bloc éditorial : accroche et texte respirent au même rythme */
+  .hy-edito{padding:32px 0}
+  .hy-edito__grid{gap:20px}
+  .hy-edito__accroche{font-size:44px}
+  /* Pied de page : coordonnées sur toute la largeur (l'adresse e-mail ne se coupe plus), liens de 44 px */
+  .hf-haut{grid-template-columns:1fr 1fr;grid-template-areas:"marque marque" "site boutique" "coord coord"}
+  .hf-marque{grid-area:marque}
+  .hf-haut > div:nth-child(2){grid-area:site}
+  .hf-haut > div:nth-child(3){grid-area:coord}
+  .hf-haut > div:nth-child(4){grid-area:boutique}
+  .hf-liens{gap:0}
+  .hf-liens a{display:flex;align-items:center;min-height:44px;padding:0}
+  .hf-liens li{padding:4px 0}
+  .hf-liens li:has(> a){padding:0}
+  .hf-bas ul a{display:inline-flex;align-items:center;min-height:44px}
+  /* Article du jugement : bouton PDF à portée de main */
+  .hy-article__aside .hy-btn{width:100%}
+  .hy-news a{padding:20px}
+}
