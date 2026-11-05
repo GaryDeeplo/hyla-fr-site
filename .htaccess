@@ -1,0 +1,38 @@
+# hyla.fr — site statique (refonte de novembre 2026, dépôt Airflow/hyla-fr)
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+AddDefaultCharset UTF-8
+AddType application/pdf .pdf
+AddType font/woff2 .woff2
+
+RewriteEngine On
+
+# Anciennes adresses WordPress
+RewriteRule ^(feed|comments/feed|page-d-exemple)/?$ / [R=301,L]
+RewriteRule ^(wp-admin|wp-login\.php|xmlrpc\.php|wp-json)(/.*)?$ - [R=404,L]
+
+# Pas de PHP exécutable hors du formulaire ; registre des demandes et ancien site fermés
+<FilesMatch "\.php$">
+  Require all denied
+</FilesMatch>
+<Files "contact.php">
+  Require all granted
+</Files>
+RedirectMatch 404 ^/(_demandes|_ancien-wordpress[^/]*)(/|$)
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(css|js|woff2|svg|png|jpg|pdf)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+</IfModule>

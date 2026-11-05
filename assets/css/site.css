@@ -1,0 +1,404 @@
+/* hyla.fr — charte HYLA (skill hyladesign, rendu hyla.com), même modèle que hylashop.com.
+   Un seul corail #DE6640, texte anthracite #343434, Hyla Headline (Regular) pour les titres,
+   Hyla Sans pour le texte, Bold réservé aux boutons. */
+
+@font-face{font-family:"Hyla Sans";src:url(../fonts/hyla-sans-regular.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Hyla Sans";src:url(../fonts/hyla-sans-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Hyla Sans";src:url(../fonts/hyla-sans-bold.woff2) format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Hyla Headline";src:url(../fonts/hyla-headline-regular.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+
+:root{
+  --hy-coral:#DE6640;
+  --hy-coral-hover:#D3613D;
+  --hy-coral-50:#FAE8E2;
+  --hy-ink:#343434;
+  --hy-muted:#5D5D5D;
+  --hy-line:#C2C2C2;
+  --hy-cool:#F3F3F3;
+  --hy-page:#FFFEFD;
+  --hy-white:#FFFFFF;
+  --hy-ease:cubic-bezier(.15,.3,.2,.9);
+  --hy-sans:"Hyla Sans",Helvetica,Arial,sans-serif;
+  --hy-head:"Hyla Headline",Georgia,serif;
+  --hy-header-h:72px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--hy-header-h) + 16px)}
+body{margin:0;background:var(--hy-page);color:var(--hy-ink);font-family:var(--hy-sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;font-synthesis:none;overflow-x:clip}
+@media (min-width:992px){body{font-size:18px;line-height:1.55}}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+p{margin:0 0 12px}
+p:last-child{margin-bottom:0}
+h1,h2,h3,h4{margin:0;font-family:var(--hy-head);font-weight:400;letter-spacing:0;text-wrap:balance}
+::selection{background:var(--hy-coral);color:var(--hy-white)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid #0000FF;box-shadow:0 0 0 4px #AAD4F8;outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:16px;top:-60px;z-index:100;background:var(--hy-ink);color:#fff;padding:12px 16px;border-radius:4px}
+.skip:focus{top:12px}
+
+.hy-wrap{width:100%;max-width:1590px;margin:0 auto;padding:0 20px}
+.hy-section{padding:40px 0}
+.hy-cool{background:var(--hy-cool)}
+@media (min-width:768px){.hy-wrap{padding:0 45px}}
+@media (min-width:1200px){.hy-section{padding:80px 0}}
+
+.hy-pairing{font-family:var(--hy-sans);font-weight:400}
+.hy-pairing-end{font-family:var(--hy-head);font-weight:400}
+.hy-h2{font-size:36px;line-height:1}
+@media (min-width:992px){.hy-h2{font-size:48px}}
+@media (min-width:1440px){.hy-h2{font-size:62px}}
+.hy-lead{max-width:62ch;color:var(--hy-ink)}
+.hy-muted{color:var(--hy-muted)}
+
+/* ===== Bouton hyla.com : pilule 50 px, libellé qui glisse au survol ===== */
+.hy-btn{display:inline-flex;align-items:center;justify-content:center;max-width:100%;height:50px;padding:8px 24px;border:1px solid currentColor;border-radius:100px;font:700 16px/1 var(--hy-sans);text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .65s var(--hy-ease),color .65s var(--hy-ease),border-color .65s var(--hy-ease)}
+.hy-btn__wrapper{position:relative;display:block;overflow:hidden}
+.hy-btn__default,.hy-btn__hover{display:block;padding:2px 0;transition:transform .35s var(--hy-ease)}
+.hy-btn__hover{position:absolute;inset:0;transform:translateY(110%)}
+.hy-btn:hover .hy-btn__default,.hy-btn:focus-visible .hy-btn__default{transform:translateY(-110%)}
+.hy-btn:hover .hy-btn__hover,.hy-btn:focus-visible .hy-btn__hover{transform:translateY(0)}
+.hy-btn--primary{color:var(--hy-coral);border-color:var(--hy-coral);background:transparent}
+.hy-btn--secondary{color:var(--hy-ink);border-color:var(--hy-ink);background:var(--hy-white)}
+.hy-btn--filled{color:var(--hy-white);border-color:var(--hy-coral);background:var(--hy-coral)}
+.hy-btn--filled:hover{background:var(--hy-coral-hover);border-color:var(--hy-coral-hover)}
+.hy-btn--sm{height:40px;padding:6px 18px;font-size:14px;letter-spacing:.28px}
+.hy-btns{display:flex;flex-wrap:wrap;gap:12px 16px}
+@media (max-width:479px){.hy-btn{height:auto;min-height:50px;padding:12px 22px;white-space:normal;text-align:center;line-height:1.2}}
+.hy-link{display:inline-flex;align-items:center;gap:6px;color:var(--hy-coral);font-size:15px;text-decoration:none}
+.hy-link svg{width:16px;height:16px;transition:transform .35s var(--hy-ease)}
+.hy-link:hover svg{transform:translateX(3px)}
+
+/* ===== Bandeau de publication judiciaire (haut de page) ===== */
+.hy-annonce{background:var(--hy-ink);color:var(--hy-white);font-size:13px;line-height:1.4}
+.hy-annonce .hy-wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 12px;min-height:40px;padding-top:8px;padding-bottom:8px;text-align:center}
+.hy-annonce strong{font-weight:400;color:var(--hy-coral)}
+.hy-annonce a{color:var(--hy-white);text-underline-offset:3px}
+.hy-annonce a:hover{color:var(--hy-coral)}
+@media (min-width:992px){.hy-annonce{font-size:14px}}
+
+/* ===== En-tête (façon hylashop) ===== */
+.hy-header{position:sticky;top:0;z-index:30;background:var(--hy-white);border-bottom:1px solid #E6E6E6}
+.hy-header .hy-wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:var(--hy-header-h)}
+.hy-logo{display:block;flex:none}
+.hy-logo img{width:auto;height:28px}
+.hy-nav ul{display:flex;align-items:center;gap:28px;margin:0;padding:0;list-style:none}
+.hy-nav a{position:relative;display:inline-block;padding:6px 0;font-size:15px;line-height:1.4;color:var(--hy-ink);text-decoration:none}
+.hy-nav a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .35s var(--hy-ease)}
+.hy-nav a:hover::after,.hy-nav a[aria-current="page"]::after{transform:scaleX(1);transform-origin:left}
+.hy-nav a[aria-current="page"]{color:var(--hy-coral)}
+.hy-header__actions{display:flex;align-items:center;gap:16px}
+.hy-frog{display:block;width:40px;height:40px;flex:none;transition:transform .25s var(--hy-ease)}
+.hy-frog:hover{transform:scale(.96)}
+.hy-burger{display:none}
+@media (min-width:992px){
+  :root{--hy-header-h:84px}
+  .hy-logo img{height:34px}
+}
+@media (min-width:992px) and (max-width:1199px){.hy-nav ul{gap:20px}.hy-nav a{font-size:14px}.hy-shop-btn{display:none}}
+@media (max-width:991px){
+  .hy-burger{display:inline-flex;align-items:center;gap:10px;position:relative;z-index:2;padding:8px 0;background:none;border:0;color:var(--hy-ink);font:400 15px/1 var(--hy-sans);cursor:pointer}
+  .hy-burger i{position:relative;width:20px;height:13px}
+  .hy-burger i::before,.hy-burger i::after,.hy-burger i span{content:"";position:absolute;left:0;width:100%;height:1px;background:currentColor;transition:transform .35s var(--hy-ease),opacity .35s var(--hy-ease),top .35s var(--hy-ease)}
+  .hy-burger i::before{top:0}.hy-burger i span{top:6px}.hy-burger i::after{top:12px}
+  .hy-burger[aria-expanded="true"] i::before{top:6px;transform:rotate(45deg)}
+  .hy-burger[aria-expanded="true"] i::after{top:6px;transform:rotate(-45deg)}
+  .hy-burger[aria-expanded="true"] i span{opacity:0}
+  .hy-nav{position:fixed;inset:0;z-index:1;background:var(--hy-ink);padding:104px 20px 40px;overflow-y:auto;visibility:hidden;opacity:0;transition:opacity .35s var(--hy-ease),visibility 0s .35s}
+  .hy-header.open .hy-nav{visibility:visible;opacity:1;transition:opacity .35s var(--hy-ease)}
+  .hy-header.open .hy-burger{color:var(--hy-white)}
+  .hy-nav ul{flex-direction:column;align-items:stretch;gap:0}
+  .hy-nav li{border-bottom:1px solid rgba(255,255,255,.12)}
+  .hy-nav a{display:block;padding:14px 0;color:var(--hy-white);font-family:var(--hy-head);font-size:30px;line-height:1.1}
+  .hy-nav a::after{display:none}
+  .hy-nav .hy-nav__shop{margin-top:32px;border:0}
+  .hy-nav .hy-nav__shop a{display:inline-flex;font:700 16px/1 var(--hy-sans);padding:16px 24px}
+  .hy-shop-btn{display:none}
+  body.menu-open{overflow:hidden}
+}
+@media (min-width:992px){.hy-nav .hy-nav__shop{display:none}}
+@media (max-width:767px){.hy-header .hy-wrap{gap:12px}.hy-frog{width:34px;height:34px}}
+
+/* ===== Hero (photo à gauche, panneau anthracite, accroche qui déborde) ===== */
+.hy-hero{display:grid;background:var(--hy-ink);color:var(--hy-white)}
+.hy-hero__media{position:relative;aspect-ratio:4/3;overflow:hidden}
+.hy-hero__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hy-hero__panel{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:24px;padding:40px 20px}
+.hy-hero__title{margin:0;color:var(--hy-white);font-size:clamp(40px,12vw,50px);line-height:.95}
+.hy-hero__title span{display:block}
+.hy-hero__text{max-width:40ch;font-size:16px;line-height:1.6;color:rgba(255,255,255,.82)}
+@media (min-width:768px){.hy-hero__panel{padding:48px 45px}}
+@media (min-width:992px){
+  .hy-hero{grid-template-columns:64fr 36fr;min-height:clamp(560px,74vh,800px)}
+  .hy-hero__media{aspect-ratio:auto}
+  .hy-hero__media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(52,52,52,0) 50%,rgba(52,52,52,.55) 78%,rgba(52,52,52,.9) 100%);pointer-events:none}
+  .hy-hero__panel{padding:64px 45px 64px 64px;gap:32px}
+  .hy-hero__title{position:relative;z-index:1;margin-left:clamp(-360px,-21vw,-200px);font-size:clamp(56px,5.6vw,84px);line-height:.95}
+  .hy-hero--court .hy-hero__title{margin-left:clamp(-300px,-16vw,-160px)}
+}
+
+/* En-tête de page simple (pages intérieures sans photo) */
+.hy-pagehead{background:var(--hy-ink);color:var(--hy-white);padding:56px 0 48px}
+.hy-pagehead h1{font-size:clamp(40px,9vw,48px);line-height:1}
+.hy-pagehead p{max-width:60ch;margin-top:16px;color:rgba(255,255,255,.82)}
+.hy-pagehead .hy-crumb{margin:0 0 16px;font-size:14px;color:rgba(255,255,255,.7)}
+.hy-pagehead .hy-crumb a{color:inherit;text-underline-offset:3px}
+@media (min-width:992px){.hy-pagehead{padding:96px 0 80px}.hy-pagehead h1{font-size:64px;line-height:1.05}}
+
+/* ===== Publication judiciaire (accueil) ===== */
+.hy-publi{background:var(--hy-cool)}
+.hy-publi__grid{display:grid;gap:32px}
+.hy-publi__head{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.hy-publi__tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--hy-coral);border-radius:100px;color:var(--hy-coral);font-size:14px;line-height:1.2}
+.hy-publi__title{font-size:36px;line-height:1}
+.hy-publi__ref{color:var(--hy-muted);font-size:15px}
+.hy-publi__card{background:var(--hy-white);border-radius:12px;padding:24px}
+.hy-publi__card h3{font-family:var(--hy-sans);font-size:15px;line-height:1.4;color:var(--hy-muted);margin:0 0 16px;letter-spacing:.02em}
+@media (min-width:768px){.hy-publi__card{padding:40px}}
+@media (min-width:992px){
+  .hy-publi__grid{grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:64px;align-items:start}
+  .hy-publi__head{position:sticky;top:calc(var(--hy-header-h) + 32px)}
+  .hy-publi__title{font-size:48px}
+}
+
+/* Texte juridique (dispositif et décision intégrale) */
+.hy-legal{font-size:16px;line-height:1.65}
+.hy-legal p{margin:0 0 14px}
+.hy-legal strong{font-weight:700}
+.hy-legal .hy-motif{margin-top:20px;font-family:var(--hy-sans);font-size:15px;letter-spacing:.06em;color:var(--hy-muted)}
+.hy-legal h2{margin:40px 0 16px;font-size:28px;line-height:1.1}
+.hy-legal h3{margin:28px 0 12px;font-family:var(--hy-sans);font-size:18px;line-height:1.35}
+.hy-legal h4{margin:20px 0 10px;font-family:var(--hy-sans);font-size:16px;font-style:italic;line-height:1.4}
+.hy-legal ul{margin:0 0 14px;padding-left:20px}
+.hy-legal .occ{display:inline-block;padding:0 6px;border-radius:4px;background:var(--hy-cool);color:var(--hy-muted);font-size:.92em}
+.hy-legal .hy-page-num{display:block;margin:28px 0 12px;font-size:13px;color:var(--hy-muted);text-align:center}
+@media (min-width:992px){.hy-legal{font-size:17px}}
+
+/* ===== Carte anthracite « Le HYLA EST » ===== */
+.hy-feature{display:grid;grid-template-columns:minmax(0,1fr);gap:32px;background:var(--hy-ink);color:var(--hy-white);border-radius:12px;padding:40px 24px;overflow:hidden}
+.hy-feature__content{display:flex;flex-direction:column;align-items:flex-start;gap:20px;min-width:0}
+.hy-feature__title{color:var(--hy-white);font-size:36px;line-height:1}
+.hy-feature__sub{font-size:20px;line-height:1.3;color:var(--hy-white)}
+.hy-feature__text{max-width:46ch;font-size:16px;line-height:1.6;color:rgba(255,255,255,.82)}
+.hy-feature__media{display:flex;align-items:center;justify-content:center}
+.hy-feature__media img{width:100%;max-height:440px;object-fit:contain}
+@media (min-width:992px){
+  .hy-feature{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;min-height:520px;padding:64px}
+  .hy-feature__title{font-size:62px}
+  .hy-feature__sub{font-size:24px}
+}
+
+/* ===== Bloc éditorial (photo + grande accroche corail) ===== */
+.hy-edito{padding:40px 0;overflow-x:clip}
+.hy-edito__grid{position:relative;display:grid;gap:24px}
+.hy-edito__media{position:relative;overflow:hidden;aspect-ratio:9/10}
+.hy-edito__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hy-edito--simple .hy-edito__media{border-radius:12px;aspect-ratio:1/1}
+.hy-edito__content{display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding:0 20px}
+.hy-edito--simple .hy-edito__content{padding:0}
+.hy-edito__title{font-size:36px;line-height:1}
+.hy-edito__text{max-width:56ch;font-size:16px;line-height:1.6}
+.hy-edito .hy-btn{margin-top:8px}
+.hy-edito__accroche{margin:0;padding:0 20px;color:var(--hy-coral);font-size:48px;line-height:.95}
+.hy-edito__accroche span{display:inline}
+@media (min-width:992px){
+  .hy-edito{padding:80px 0}
+  .hy-edito__grid{grid-template-columns:5fr 7fr;gap:0;align-items:stretch}
+  .hy-edito--img-right .hy-edito__grid{grid-template-columns:7fr 5fr}
+  .hy-edito--img-right .hy-edito__media{order:2}
+  .hy-edito__content{align-self:end;padding:0 45px 24px 64px}
+  .hy-edito--img-right .hy-edito__content{padding:0 64px 24px 45px}
+  .hy-edito__title{font-size:48px}
+  .hy-edito__text{font-size:18px;line-height:1.55}
+  .hy-edito--simple .hy-edito__grid{grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .hy-edito--simple .hy-edito__content{align-self:center;padding:0}
+}
+@media (min-width:992px) and (max-width:1199px){
+  .hy-edito__accroche{grid-column:1/-1;padding:0 45px 32px;font-size:clamp(64px,7.4vw,88px)}
+  .hy-edito--accroche .hy-edito__content{align-self:center;padding-bottom:0}
+}
+/* ≥ 1200 px : la grande accroche chevauche la photo et la colonne de texte, dans une bande
+   réservée (haut ou bas) pour ne jamais recouvrir le titre ni le texte. */
+@media (min-width:1200px){
+  .hy-edito__accroche{position:absolute;z-index:1;left:0;top:40px;padding:0;font-size:clamp(84px,8vw,124px);white-space:nowrap;pointer-events:none;will-change:transform}
+  .hy-edito--img-right .hy-edito__accroche{left:3%}
+  .hy-edito--accroche .hy-edito__content{padding-top:calc(40px + 1.2 * clamp(84px,8vw,124px))}
+  .hy-edito__accroche--bas{top:auto;bottom:40px}
+  .hy-edito--accroche-bas .hy-edito__content{align-self:start;padding-top:24px;padding-bottom:calc(40px + 1.2 * clamp(84px,8vw,124px))}
+}
+@media (min-width:1440px){.hy-edito__title{font-size:62px}}
+
+/* Liste à pastilles corail cochées */
+.hy-checks{display:grid;gap:12px;margin:8px 0 0;padding:0;list-style:none}
+.hy-checks li{position:relative;padding-left:40px;line-height:1.5}
+.hy-checks li::before{content:"";position:absolute;left:0;top:-2px;width:28px;height:28px;border:1px solid var(--hy-coral);border-radius:50%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4L18 8' fill='none' stroke='%23DE6640' stroke-width='1.6'/%3E%3C/svg%3E") center/16px no-repeat}
+
+/* ===== Tuiles (façon « Nos produits ») ===== */
+.hy-tiles__head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:24px}
+.hy-tiles{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;margin:0;padding:0;list-style:none}
+.hy-tile{display:flex;flex-direction:column;gap:12px;color:var(--hy-ink);text-decoration:none}
+.hy-tile__media{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;border-radius:12px;background:var(--hy-cool);overflow:hidden}
+.hy-tile__media img{width:78%;height:78%;object-fit:contain;transition:transform .65s var(--hy-ease)}
+.hy-tile__media--photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hy-tile__media--logos{gap:8%;padding:12%}
+.hy-tile__media--logos img{width:30%;height:auto;mix-blend-mode:multiply}
+a.hy-tile:hover .hy-tile__media img{transform:scale(1.03)}
+.hy-tile__title{font-size:24px;line-height:1.1}
+.hy-tile__text{font-size:15px;line-height:1.55;color:var(--hy-muted)}
+@media (min-width:600px){.hy-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:992px){.hy-tiles--3{grid-template-columns:repeat(3,minmax(0,1fr))}.hy-tiles--4{grid-template-columns:repeat(4,minmax(0,1fr))}.hy-tiles__head{margin-bottom:40px}.hy-tile__title{font-size:28px}}
+
+/* ===== Avantages (pictos officiels) ===== */
+.hy-benefits{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:0;padding:0;list-style:none}
+.hy-benefits li{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.hy-benefits img{width:64px;height:64px;flex:none}
+.hy-benefits h3{font-family:var(--hy-sans);font-size:16px;line-height:1.4}
+@media (min-width:768px){.hy-benefits li{flex-direction:row;align-items:center;gap:16px}.hy-benefits img{width:72px;height:72px}}
+@media (min-width:1200px){.hy-benefits--3{grid-template-columns:repeat(3,1fr)}.hy-benefits--4{grid-template-columns:repeat(4,1fr)}.hy-benefits img{width:88px;height:88px}.hy-benefits h3{font-size:18px}}
+@media (max-width:767px){.hy-benefits--3{grid-template-columns:1fr}}
+
+/* ===== Chiffres ===== */
+.hy-facts{display:grid;gap:0;margin:0;padding:0;list-style:none;border-top:1px solid var(--hy-line)}
+.hy-facts li{padding:16px 0;border-bottom:1px solid var(--hy-line);font-size:16px;line-height:1.5}
+.hy-facts strong{font-weight:400;color:var(--hy-coral)}
+
+/* ===== Presse ===== */
+.hy-press{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:24px 48px;margin:0;padding:0;list-style:none}
+/* Logos presse en gris (couleur au survol) ; multiply efface le fond blanc des fichiers sur le gris clair. */
+.hy-press img{height:72px;width:auto;mix-blend-mode:multiply;filter:grayscale(1);opacity:.7;transition:filter .65s var(--hy-ease),opacity .65s var(--hy-ease)}
+.hy-press li:hover img{filter:none;opacity:1}
+@media (min-width:992px){.hy-press img{height:96px}}
+
+/* ===== Avis clients ===== */
+.hy-avis{display:grid;gap:24px;margin:0;padding:0;list-style:none}
+.hy-avis li{display:flex;flex-direction:column;gap:12px;padding:24px;border-radius:12px;background:var(--hy-white)}
+.hy-avis .hy-stars{color:var(--hy-coral);letter-spacing:2px;font-size:16px}
+.hy-avis blockquote{margin:0;font-size:16px;line-height:1.6}
+.hy-avis cite{font-style:normal;font-size:14px;color:var(--hy-muted)}
+@media (min-width:768px){.hy-avis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1200px){.hy-avis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* ===== Citation ===== */
+.hy-quote{margin:0;max-width:30ch;font-family:var(--hy-head);font-size:32px;line-height:1.1}
+.hy-quote-by{margin-top:24px;font-size:15px;line-height:1.5;color:var(--hy-muted)}
+@media (min-width:992px){.hy-quote{font-size:48px}}
+
+/* ===== Deux colonnes titre / texte ===== */
+.hy-split{display:grid;gap:24px}
+@media (min-width:992px){.hy-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:start}}
+
+/* ===== Bandeau d'appel à l'action ===== */
+.hy-cta{background:var(--hy-ink);color:var(--hy-white);border-radius:12px;padding:40px 24px;display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+.hy-cta h2{color:var(--hy-white);font-size:36px;line-height:1}
+.hy-cta p{color:rgba(255,255,255,.82);max-width:52ch}
+@media (min-width:992px){.hy-cta{flex-direction:row;align-items:center;justify-content:space-between;padding:56px 64px}.hy-cta h2{font-size:48px}}
+
+/* ===== Actualités ===== */
+.hy-news{display:grid;gap:24px;margin:0;padding:0;list-style:none}
+.hy-news a{display:grid;gap:16px;padding:24px;border-radius:12px;background:var(--hy-white);border:1px solid #E6E6E6;text-decoration:none;color:var(--hy-ink);transition:border-color .65s var(--hy-ease)}
+.hy-news a:hover{border-color:var(--hy-coral)}
+.hy-news time{font-size:14px;color:var(--hy-muted)}
+.hy-news h2{font-size:28px;line-height:1.1}
+@media (min-width:992px){.hy-news a{grid-template-columns:200px 1fr auto;align-items:center;gap:40px;padding:32px 40px}.hy-news h2{font-size:32px}}
+
+.hy-article{display:grid;gap:40px}
+.hy-article__aside{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.hy-article__aside dl{display:grid;gap:4px 16px;grid-template-columns:auto 1fr;margin:0;font-size:15px}
+.hy-article__aside dt{color:var(--hy-muted)}
+.hy-article__aside dd{margin:0}
+.hy-article__body{max-width:78ch}
+.hy-note{padding:16px 20px;border-radius:12px;background:var(--hy-coral-50);font-size:15px;line-height:1.55}
+@media (min-width:992px){.hy-article{grid-template-columns:minmax(0,3fr) minmax(0,8fr);gap:64px}.hy-article__aside{position:sticky;top:calc(var(--hy-header-h) + 32px);align-self:start}}
+
+/* ===== Contact ===== */
+.hy-contact{display:grid;gap:40px}
+.hy-contact__infos{display:grid;gap:24px;align-content:start}
+.hy-contact__infos h2{font-size:32px;line-height:1}
+.hy-info{display:flex;gap:16px;align-items:flex-start;font-size:16px;line-height:1.5}
+.hy-info svg{flex:none;width:24px;height:24px;margin-top:2px;color:var(--hy-coral)}
+.hy-info a{text-underline-offset:3px}
+.hy-form{display:grid;gap:16px;padding:24px;border-radius:12px;background:var(--hy-white);border:1px solid #E6E6E6}
+.hy-form .row{display:grid;gap:16px}
+.hy-field{display:grid;gap:6px}
+.hy-field label,.hy-field legend{font-size:14px;line-height:1.4;color:var(--hy-ink)}
+.hy-field input,.hy-field select,.hy-field textarea{width:100%;min-height:48px;padding:12px 14px;border:1px solid var(--hy-line);border-radius:4px;background:var(--hy-white);color:var(--hy-ink);font:400 16px/1.4 var(--hy-sans)}
+.hy-field textarea{min-height:140px;resize:vertical}
+.hy-field input:focus,.hy-field select:focus,.hy-field textarea:focus{border-color:var(--hy-ink)}
+.hy-field fieldset{border:0;margin:0;padding:0}
+.hy-radios{display:flex;flex-wrap:wrap;gap:12px}
+.hy-radios label{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--hy-line);border-radius:100px;font-size:15px;cursor:pointer}
+.hy-radios input{accent-color:var(--hy-coral);width:16px;height:16px;min-height:0;margin:0}
+.hy-consent{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5}
+.hy-consent input{accent-color:var(--hy-coral);width:18px;height:18px;margin-top:2px;flex:none}
+.hy-req{color:var(--hy-coral)}
+.hy-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.hy-form__status{padding:14px 16px;border-radius:4px;font-size:15px}
+.hy-form__status--ok{background:#EAF7E3;color:var(--hy-ink)}
+.hy-form__status--err{background:var(--hy-coral-50);color:var(--hy-ink)}
+@media (min-width:768px){.hy-form{padding:40px}.hy-form .row{grid-template-columns:1fr 1fr}}
+@media (min-width:992px){.hy-contact{grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:64px}}
+
+/* ===== Texte long (mentions, confidentialité) ===== */
+.hy-prose{max-width:78ch;font-size:16px;line-height:1.65}
+.hy-prose h2{margin:40px 0 12px;font-size:28px;line-height:1.1}
+.hy-prose h2:first-child{margin-top:0}
+.hy-prose ul{padding-left:20px}
+.hy-prose a{color:var(--hy-ink);text-underline-offset:3px}
+
+/* ===== Pied de page (façon hyla.com / hylashop) ===== */
+.hf{background:var(--hy-ink);color:var(--hy-white)}
+.hf-fond{position:relative;overflow:hidden;padding:40px 0}
+.hf-haut{display:grid;grid-template-columns:1fr 1fr;gap:40px 20px;margin-top:24px}
+.hf-marque{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.hf-marque img{display:block;width:auto;height:30px}
+.hf-grenouille{width:44px;height:44px}
+.hf-titre{margin:0;color:var(--hy-coral);font-size:16px;line-height:1.4}
+.hf-liens{display:flex;flex-direction:column;gap:4px;margin:8px 0 0;padding:0;list-style:none;font-size:16px;line-height:1.4}
+.hf-liens li{margin:0;color:rgba(255,255,255,.82)}
+.hf a{color:var(--hy-white);text-decoration:none}
+.hf-liens a{display:inline-block;padding:4px 0}
+.hf-u{background-image:linear-gradient(currentColor,currentColor);background-size:0 1px;background-position:left 100% bottom 0;background-repeat:no-repeat;transition:background-size .25s var(--hy-ease)}
+.hf a:hover .hf-u,.hf a:focus-visible .hf-u{background-size:100% 1px;background-position:left 0 bottom 0}
+.hf-reseaux{display:flex;gap:8px 16px;margin:4px 0 0 -10px;padding:0;list-style:none}
+.hf-reseaux a{display:grid;place-items:center;width:44px;height:44px}
+.hf-reseaux svg{width:24px;height:24px}
+.hf-grand-logo{margin-top:48px}
+.hf-grand-logo img{width:100%;height:auto}
+.hf-bas{display:flex;flex-wrap:wrap;align-items:center;gap:12px 32px;margin-top:40px;font-size:14px;line-height:1.4;color:rgba(255,255,255,.8)}
+.hf-bas p{margin:0}
+.hf-bas ul{display:flex;flex-wrap:wrap;gap:8px 24px;margin:0;padding:0;list-style:none}
+.hf-bas a{color:inherit;text-underline-offset:3px}
+@media (min-width:768px){.hf-haut{grid-template-columns:repeat(4,minmax(0,auto));justify-content:space-between;column-gap:32px}}
+@media (min-width:992px){
+  .hf-fond{padding:80px 0}
+  .hf-haut{row-gap:48px;margin-top:40px}
+  .hf-marque img{height:38px}
+  .hf-titre{font-size:18px}
+  .hf-liens{margin-top:16px;font-size:18px}
+  .hf-grand-logo{margin-top:64px}
+  .hf-bas{justify-content:space-between;margin-top:64px;font-size:15px}
+}
+@media (min-width:1280px){
+  .hf-haut{display:flex;justify-content:space-between;gap:40px}
+  .hf-marque{flex-direction:column;align-items:flex-start;justify-content:flex-start}
+  .hf-grenouille{width:56px;height:56px}
+}
+
+/* ===== Apparition au défilement ===== */
+@media (prefers-reduced-motion:no-preference){
+  .js .hy-reveal{opacity:0;transform:translateY(24px);transition:opacity .65s var(--hy-ease),transform .65s var(--hy-ease)}
+  .js .hy-reveal.is-in{opacity:1;transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .hy-btn,.hy-btn__default,.hy-btn__hover,.hy-nav,.hy-burger i::before,.hy-burger i::after{transition:none}
+  .hy-edito__accroche{transform:none!important}
+}
+@media print{
+  .hy-header,.hy-annonce,.hf,.hy-btn{display:none!important}
+  body{background:#fff}
+}
+
+/* Note d'en-tête de la retranscription */
+.hy-legal blockquote{margin:0 0 24px;padding:16px 20px;background:var(--hy-cool);border-radius:12px;font-size:15px;color:var(--hy-muted)}
+.hy-legal hr{margin:32px 0;border:0;border-top:1px solid var(--hy-line)}
