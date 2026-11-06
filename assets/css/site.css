@@ -160,6 +160,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .hy-publi__resume p{margin:0;max-width:62ch}
 .hy-publi__resume strong{font-weight:400;text-decoration:underline;text-decoration-color:var(--hy-coral);text-underline-offset:4px}
 .hy-publi__resume .hy-btns{margin-top:8px}
+.hy-montants{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.hy-montants li{position:relative;padding-left:22px;line-height:1.5}
+.hy-montants li::before{content:"";position:absolute;left:2px;top:.6em;width:8px;height:8px;border-radius:50%;background:var(--hy-coral)}
 @media (min-width:992px){.hy-publi__resume{font-size:20px}}
 .hy-publi__card h3{font-family:var(--hy-sans);font-size:15px;line-height:1.4;color:var(--hy-muted);margin:0 0 16px;letter-spacing:.02em}
 @media (min-width:768px){.hy-publi__card{padding:40px}}
