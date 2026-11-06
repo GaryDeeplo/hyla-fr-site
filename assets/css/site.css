@@ -530,3 +530,28 @@ fieldset.hy-field{border:0;margin:0;padding:0;min-width:0}
   .hy-article__aside .hy-btn{width:100%}
   .hy-news a{padding:20px}
 }
+
+/* ===== Bannière cookies (CookieConsent 3) aux couleurs HYLA ===== */
+#cc-main{
+  --cc-font-family:var(--hy-sans);--cc-bg:var(--hy-white);--cc-primary-color:var(--hy-ink);--cc-secondary-color:var(--hy-muted);
+  --cc-btn-primary-bg:var(--hy-ink);--cc-btn-primary-color:var(--hy-white);--cc-btn-primary-border-color:var(--hy-ink);
+  --cc-btn-primary-hover-bg:var(--hy-coral-hover);--cc-btn-primary-hover-color:var(--hy-white);--cc-btn-primary-hover-border-color:var(--hy-coral-hover);
+  --cc-btn-secondary-bg:var(--hy-white);--cc-btn-secondary-color:var(--hy-ink);--cc-btn-secondary-border-color:var(--hy-ink);
+  --cc-btn-secondary-hover-bg:var(--hy-cool);--cc-btn-secondary-hover-color:var(--hy-ink);--cc-btn-secondary-hover-border-color:var(--hy-ink);
+  --cc-btn-border-radius:100px;--cc-modal-border-radius:12px;--cc-pm-toggle-border-radius:100px;--cc-link-color:var(--hy-ink);
+  --cc-separator-border-color:var(--hy-cool);--cc-footer-bg:var(--hy-cool);--cc-footer-color:var(--hy-muted);--cc-footer-border-color:var(--hy-cool);
+  --cc-cookie-category-block-bg:var(--hy-cool);--cc-cookie-category-block-border:var(--hy-cool);
+  --cc-cookie-category-block-hover-bg:var(--hy-cool);--cc-cookie-category-block-hover-border:var(--hy-line);
+  --cc-cookie-category-expanded-block-bg:var(--hy-white);--cc-cookie-category-expanded-block-hover-bg:var(--hy-cool);
+  --cc-toggle-on-bg:var(--hy-coral);--cc-toggle-off-bg:var(--hy-line);--cc-toggle-on-knob-bg:var(--hy-white);--cc-toggle-off-knob-bg:var(--hy-white);
+  --cc-toggle-readonly-bg:var(--hy-line);--cc-toggle-readonly-knob-bg:var(--hy-white);--cc-toggle-enabled-icon-color:var(--hy-coral);--cc-toggle-disabled-icon-color:var(--hy-muted);
+  --cc-overlay-bg:rgba(52,52,52,.6);--cc-modal-transition-duration:.35s
+}
+#cc-main .cm__title,#cc-main .pm__title{font-family:var(--hy-head);font-weight:400;font-size:24px;line-height:1.1}
+#cc-main .pm__section-title{font-family:var(--hy-sans);font-weight:400;font-size:16px}
+#cc-main .cm__desc,#cc-main .pm__section-desc{font-size:15px;line-height:1.55;color:var(--hy-ink)}
+#cc-main .cm__btn,#cc-main .pm__btn{min-height:44px;font-weight:700;font-size:15px}
+#cc-main a{text-decoration:underline;text-decoration-color:var(--hy-coral);text-underline-offset:3px}
+#cc-main .cm{box-shadow:0 12px 40px rgba(52,52,52,.18)}
+.hf-cookies{padding:0;border:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+@media (max-width:767px){.hf-cookies{min-height:44px}}

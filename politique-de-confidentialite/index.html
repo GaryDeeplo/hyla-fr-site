@@ -19,7 +19,8 @@
 <link rel="apple-touch-icon" href="../assets/logos/apple-touch-icon.png">
 <link rel="preload" href="../assets/fonts/hyla-headline-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/hyla-sans-regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/css/site.css?v=20261105">
+<link rel="stylesheet" href="../assets/vendor/cookieconsent/cookieconsent.css?v=3.3.0">
+<link rel="stylesheet" href="../assets/css/site.css?v=20261106">
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -70,7 +71,9 @@
     <p>Les demandes, y compris leur copie dans le registre sécurisé du site, sont conservées au maximum trois ans après notre dernier échange, puis supprimées.</p>
 
     <h2>Cookies</h2>
-    <p>Ce site n’utilise aucun cookie de mesure d’audience ni de publicité. Les vidéos YouTube ne se chargent que si vous cliquez dessus, depuis youtube-nocookie.com ; YouTube applique alors sa propre politique. Notre hébergeur conserve des journaux techniques de connexion pour la sécurité du service. Les liens vers hylashop.com, YouTube ou Facebook vous mènent vers des sites qui appliquent leur propre politique.</p>
+    <p>Avec votre accord seulement, donné dans la bannière qui s’affiche à votre première visite, nous utilisons Google Analytics 4 (Google Ireland Limited) pour mesurer la fréquentation du site : pages vues, durée de visite, provenance. Il dépose les cookies « _ga » et « _ga_* », conservés 13 mois au plus. Ces données peuvent être traitées par Google aux États-Unis, dans le cadre du Data Privacy Framework UE–États-Unis. Si vous refusez, aucun cookie de mesure n’est déposé.</p>
+    <p>Votre choix est conservé 6 mois dans un cookie « cc_cookie ». Vous pouvez le modifier ou retirer votre accord à tout moment avec le lien « Gestion des cookies » en bas de chaque page.</p>
+    <p>Les vidéos YouTube ne se chargent que si vous cliquez dessus, depuis youtube-nocookie.com ; YouTube applique alors sa propre politique. Notre hébergeur conserve des journaux techniques de connexion pour la sécurité du service. Les liens vers hylashop.com, YouTube ou Facebook vous mènent vers des sites qui appliquent leur propre politique.</p>
 
     <h2>Vos droits</h2>
     <p>Vous pouvez accéder à vos données, les rectifier, les effacer, en limiter le traitement, vous y opposer, demander leur portabilité ou retirer votre consentement à tout moment en écrivant à <a href="mailto:info@hyla-est.fr">info@hyla-est.fr</a> ou par courrier à l’adresse ci-dessus. Vous pouvez aussi adresser une réclamation à la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a>).</p>
@@ -126,10 +129,13 @@
       <ul>
         <li><a href="../mentions-legales/">Mentions légales</a></li>
         <li><a href="../politique-de-confidentialite/">Politique de confidentialité</a></li>
+        <li><button class="hf-cookies" type="button" data-cc="show-preferencesModal">Gestion des cookies</button></li>
       </ul>
     </div>
   </div>
 </footer>
-<script src="../assets/js/site.js?v=20261105" defer></script>
+<script src="../assets/js/site.js?v=20261106" defer></script>
+<script src="../assets/vendor/cookieconsent/cookieconsent.umd.js?v=3.3.0" defer></script>
+<script src="../assets/js/consent.js?v=20261106" data-confidentialite="../politique-de-confidentialite/" defer></script>
 </body>
 </html>
