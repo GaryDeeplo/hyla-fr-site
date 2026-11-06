@@ -143,12 +143,11 @@
     });
   });
 
-  // Formulaire de contact : retour de l'envoi (?envoi=ok|erreur)
-  var statut = document.querySelector('[data-form-status]');
-  if (statut) {
-    var p = new URLSearchParams(window.location.search).get('envoi');
-    if (p === 'ok') { statut.hidden = false; statut.className = 'hy-form__status hy-form__status--ok'; statut.textContent = 'Merci, votre message a bien été envoyé. Nous vous recontactons rapidement.'; }
-    else if (p === 'erreur') { statut.hidden = false; statut.className = 'hy-form__status hy-form__status--err'; statut.textContent = "Votre message n'a pas pu être envoyé. Vérifiez les champs obligatoires ou écrivez-nous à info@hyla-est.fr."; }
-    if (p) statut.scrollIntoView({ block: 'center' });
-  }
+  // « Copier l'adresse » (messageries en ligne : le lien mailto n'ouvre rien)
+  document.querySelectorAll('[data-copier]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var ok = function () { b.textContent = 'Adresse copiée'; b.setAttribute('data-copie', ''); window.setTimeout(function () { b.textContent = 'Copier l’adresse'; b.removeAttribute('data-copie'); }, 2500); };
+      if (navigator.clipboard) navigator.clipboard.writeText(b.getAttribute('data-copier')).then(ok, function () {});
+    });
+  });
 })();

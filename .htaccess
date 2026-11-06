@@ -14,14 +14,10 @@ RewriteRule ^(sitemap_index|page-sitemap|post-sitemap)\.xml$ /sitemap.xml [R=301
 RewriteRule ^(feed|comments/feed|page-d-exemple)/?$ / [R=301,L]
 RewriteRule ^(wp-admin|wp-login\.php|xmlrpc\.php|wp-json)(/.*)?$ - [R=404,L]
 
-# Pas de PHP exécutable hors du formulaire ; registre des demandes et ancien site fermés
+# Site sans PHP : aucun script exécutable
 <FilesMatch "\.php$">
   Require all denied
 </FilesMatch>
-<Files "contact.php">
-  Require all granted
-</Files>
-RedirectMatch 404 ^/(_demandes|_ancien-wordpress[^/]*)(/|$)
 
 <IfModule mod_headers.c>
   # Jugement : consultable et partageable, mais pas indexé (personnes physiques nommées)

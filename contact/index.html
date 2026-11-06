@@ -64,51 +64,25 @@
       <h2>Coordonnées</h2>
       <p class="hy-info"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span>HYLA Evolution SAS<br>12, rue Thomas Edison<br>77100 Meaux</span></p>
       <p class="hy-info"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5 9 4l1.2 4-2 1.6a12 12 0 0 0 6.2 6.2l1.6-2 4 1.2.5 2.4c.1.8-.5 1.6-1.4 1.6C10.5 19 5 13.5 5 4.9c0-.9.8-1.5 1.6-1.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><a href="tel:+33185764826">+33 1 85 76 48 26</a></p>
-      <p class="hy-info"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m4 6.5 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><a href="mailto:info@hyla-est.fr">info@hyla-est.fr</a></p>
+      <p class="hy-info"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m4 6.5 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span><a href="mailto:info@hyla-est.fr">info@hyla-est.fr</a><br><button class="hy-copier" type="button" data-copier="info@hyla-est.fr">Copier l’adresse</button></span></p>
       <p class="hy-muted" style="font-size:15px">Envie d’accessoires ou de produits d’entretien ? Retrouvez-les sur notre boutique en ligne <a href="https://www.hylashop.com/" target="_blank" rel="noopener">hylashop.com</a>.</p>
     </div>
 
-    <form class="hy-form" id="formulaire" action="../contact.php" method="post" novalidate>
-      <p class="hy-form__status" data-form-status hidden role="status"></p>
-      <p class="hy-muted" style="font-size:14px;margin:0">Les champs marqués <span class="hy-req">*</span> sont obligatoires.</p>
-      <div class="row">
-        <div class="hy-field"><label for="f-nom">Nom <span class="hy-req">*</span></label><input id="f-nom" name="nom" autocomplete="family-name" required maxlength="80"></div>
-        <div class="hy-field"><label for="f-prenom">Prénom <span class="hy-req">*</span></label><input id="f-prenom" name="prenom" autocomplete="given-name" required maxlength="80"></div>
-      </div>
-      <div class="row">
-        <div class="hy-field"><label for="f-ville">Ville <span class="hy-req">*</span></label><input id="f-ville" name="ville" autocomplete="address-level2" required maxlength="80"></div>
-        <div class="hy-field"><label for="f-dep">Département <span class="hy-req">*</span></label><input id="f-dep" name="departement" required maxlength="40" placeholder="ex. 77"></div>
-      </div>
-      <div class="row">
-        <div class="hy-field"><label for="f-tel">Numéro de téléphone <span class="hy-req">*</span></label><input id="f-tel" name="telephone" type="tel" autocomplete="tel" required maxlength="30"></div>
-        <div class="hy-field"><label for="f-mail">E-mail <span class="hy-req">*</span></label><input id="f-mail" name="email" type="email" autocomplete="email" required maxlength="120"></div>
-      </div>
-      <fieldset class="hy-field">
-        <legend>Centre d’intérêt <span class="hy-req">*</span></legend>
-        <div class="hy-radios">
-          <label><input type="radio" name="interet" value="produit" required> Produit</label>
-          <label><input type="radio" name="interet" value="carriere" id="f-carriere"> Carrière</label>
-        </div>
-      </fieldset>
-      <div class="hy-field"><label for="f-msg">Votre message <span class="hy-req">*</span></label><textarea id="f-msg" name="message" required maxlength="4000"></textarea></div>
-      <div class="hy-hp" aria-hidden="true"><label for="f-site">Site web</label><input id="f-site" name="site_web" tabindex="-1" autocomplete="off"></div>
-      <input type="hidden" name="duree" value="">
-      <label class="hy-consent"><input type="checkbox" name="consentement" value="oui" required> <span>J’accepte la <a href="../politique-de-confidentialite/">politique de confidentialité</a> de ce site. <span class="hy-req">*</span></span></label>
-      <div><button class="hy-btn hy-btn--filled" type="submit"><span class="hy-btn__wrapper"><span class="hy-btn__default">Envoyer le message</span><span class="hy-btn__hover" aria-hidden="true">Envoyer le message</span></span></button></div>
-    </form>
+    <div class="hy-ecrire">
+      <article class="hy-ecrire__carte" id="demonstration">
+        <h2>Demandez une démonstration gratuite</h2>
+        <p>Un réseau proche de chez vous avec environ 300 conseillers dans toute la France !</p>
+        <a class="hy-btn hy-btn--filled" href="mailto:info@hyla-est.fr?subject=Demande%20de%20d%C3%A9monstration%20gratuite%20(hyla.fr)&body=Bonjour%2C%0D%0A%0D%0AJe%20souhaite%20une%20d%C3%A9monstration%20gratuite%20du%20HYLA.%0D%0A%0D%0ANom%20%3A%20%0D%0APr%C3%A9nom%20%3A%20%0D%0AVille%20%3A%20%0D%0AD%C3%A9partement%20%3A%20%0D%0AT%C3%A9l%C3%A9phone%20%3A%20%0D%0A%0D%0AMessage%20%3A%20%0D%0A"><span class="hy-btn__wrapper"><span class="hy-btn__default">Écrire un e-mail</span><span class="hy-btn__hover" aria-hidden="true">Écrire un e-mail</span></span></a>
+      </article>
+      <article class="hy-ecrire__carte" id="carriere">
+        <h2>Rejoignez une équipe dynamique !</h2>
+        <p>Devenez un Conseiller HYLA ÉVOLUTION, à temps partiel ou à plein temps.</p>
+        <a class="hy-btn hy-btn--secondary" href="mailto:info@hyla-est.fr?subject=Devenir%20conseiller%20HYLA%20%C3%89VOLUTION%20(hyla.fr)&body=Bonjour%2C%0D%0A%0D%0AJe%20souhaite%20devenir%20conseiller%20HYLA%20%C3%89VOLUTION.%0D%0A%0D%0ANom%20%3A%20%0D%0APr%C3%A9nom%20%3A%20%0D%0AVille%20%3A%20%0D%0AD%C3%A9partement%20%3A%20%0D%0AT%C3%A9l%C3%A9phone%20%3A%20%0D%0A%0D%0AMessage%20%3A%20%0D%0A"><span class="hy-btn__wrapper"><span class="hy-btn__default">Écrire un e-mail</span><span class="hy-btn__hover" aria-hidden="true">Écrire un e-mail</span></span></a>
+      </article>
+      <p class="hy-muted hy-ecrire__note">Le bouton ouvre votre messagerie avec un message prêt à compléter. Vous pouvez aussi écrire directement à info@hyla-est.fr.</p>
+    </div>
   </div>
 </section>
-<script>
-  (function () {
-    var f = document.getElementById('formulaire');
-    var debut = Date.now();
-    if (new URLSearchParams(location.search).get('sujet') === 'carriere') document.getElementById('f-carriere').checked = true;
-    f.addEventListener('submit', function (e) {
-      if (!f.checkValidity()) { e.preventDefault(); f.reportValidity(); return; }
-      f.elements.duree.value = String(Date.now() - debut); // temps passé sur le formulaire (anti-robots)
-    });
-  })();
-</script>
 
 </main>
 <footer class="hf" data-hf>
